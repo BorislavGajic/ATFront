@@ -1,0 +1,27 @@
+<div class="panel-header panel-header-sm">
+</div>
+
+<div class="card-body">
+  <h4 class="card-title"> Create agent</h4>
+
+  <form [formGroup]="AgentForm" (ngSubmit)="open()">
+
+    <div>
+      <label for="type">Agent's type:  </label>
+      <mat-form-field >
+        <mat-label>Agent type</mat-label>
+        <mat-select formControlName="type">
+          <mat-option id="type"  *ngFor="let klasa of classes" [value]="klasa">{{klasa}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="full-name-inputs">
+      <label for="name">Agent's name:  </label>
+      <input type="text" formControlName="name" id="name" placeholder="Agent's name">
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+</div>
