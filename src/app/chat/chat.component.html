@@ -1,1 +1,64 @@
-<p>chat works!</p>
+<div class="panel-header panel-header-sm">
+</div>
+
+<div class="card-body">
+  <h4 class="card-title"> Create message</h4>
+
+  <form [formGroup]="ChatForm" (ngSubmit)="open()">
+
+    <div>
+      <label for="performative">Performative:  </label>
+      <mat-form-field >
+        <mat-label>Performative</mat-label>
+        <mat-select formControlName="performative">
+          <mat-option id="performative"  *ngFor="let klasa of performatives" [value]="klasa">{{klasa}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <label for="sender">Sender:  </label>
+      <mat-form-field >
+        <mat-label>Sender</mat-label>
+        <mat-select formControlName="sender">
+          <mat-option id="sender"  *ngFor="let klasa of agents" [value]="klasa.id">{{klasa.id.name+'@'+klasa.id.type.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <label for="receivers">Receivers:  </label>
+      <mat-form-field >
+        <mat-label>Receivers</mat-label>
+        <mat-select formControlName="receivers" multiple>
+          <mat-option id="receivers"  *ngFor="let klasa of agents" [value]="klasa.id">{{klasa.id.name+'@'+klasa.id.type.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <label for="replyTo">Replay to:  </label>
+      <mat-form-field >
+        <mat-label>Replay to</mat-label>
+        <mat-select formControlName="replyTo">
+          <mat-option id="replyTo"  *ngFor="let klasa of agents" [value]="klasa.id">{{klasa.id.name+'@'+klasa.id.type.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="full-name-inputs">
+      <label for="content">Content:  </label>
+      <textarea id="content" formControlName="content" name="w3review" rows="4" cols="50">
+        </textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Send</button>
+  </form>
+
+  <div class="full-name-inputs">
+    <label for="ws">Web socket:  </label>
+    <textarea id="ws" name="w3review3" rows="6" cols="100">
+        </textarea>
+  </div>
+
+</div>

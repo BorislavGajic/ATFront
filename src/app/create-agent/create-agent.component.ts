@@ -21,8 +21,8 @@ export class CreateAgentComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   open() {
-    console.log(this.AgentForm.value.type, this.AgentForm.value.name);
-    this.createAgentService.createAgent(this.AgentForm.value.type, this.AgentForm.value.name).subscribe();
+    console.log(this.AgentForm.value);
+    this.createAgentService.createAgent(this.AgentForm.value).subscribe();
   }
 
 }

@@ -15,7 +15,19 @@ export class CreateAgentService {
     })
   };
 
-  createAgent(type, name): Observable<any> {
-    return this.http.put('http://localhost:8080/agents/running/' + type + '/' + name, this.httpOptions );
+  createAgent(ad): Observable<any> {
+    return this.http.put<any>('http://localhost:8080/AT-Chat-war/rest/agents/running/' + ad.type + '/' + ad.name, null);
+  }
+
+  getAllPerformatives(): Observable<any> {
+    return this.http.get<any>('http://localhost:8080/AT-Chat-war/rest/messages');
+  }
+
+  fireMessage(mes): Observable<any> {
+    return this.http.post<any>('http://localhost:8080/AT-Chat-war/rest/messages', mes);
+  }
+
+  getAllAgents(): Observable<any> {
+    return this.http.get<any>('http://localhost:8080/AT-Chat-war/rest/agents/running');
   }
 }
