@@ -18,7 +18,20 @@ export class ChatComponent implements OnInit {
   performatives: any = [];
   agents: any = [];
   agentz: any = [];
-  constructor(private formBuilder: FormBuilder, private createAgentService: CreateAgentService) { }
+  text = '';
+
+  constructor(private formBuilder: FormBuilder, private createAgentService: CreateAgentService) {
+    createAgentService.messages.subscribe(msg => {
+      let tmp = '';
+      for (const rec of msg.receivers) {
+        tmp += rec.name + '(' + rec.type.name + '),';
+      }
+      console.log(msg.performative + ' from: ' + msg.sender.name + '(' + msg.sender.type.name + ') to: ' + tmp
+        + ' content: ' + msg.content);
+      this.text += msg.performative + ' from: ' + msg.sender.name + '(' + msg.sender.type.name + ') to: ' + tmp
+        + ' content: ' + msg.content + '\n';
+    });
+  }
 
   ngOnInit(): void {
     this.performatives = [];
@@ -47,7 +60,7 @@ export class ChatComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   open() {
-    console.log(JSON.stringify(this.ChatForm.value));
+    console.log(this.ChatForm.value);
     this.createAgentService.fireMessage(this.ChatForm.value).subscribe();
   }
 }
